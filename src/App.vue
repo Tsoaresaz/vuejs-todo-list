@@ -6,7 +6,13 @@
         <ul class="c-todo-list__list">
           <li class="c-todo-list__message">Tasks list is empty!</li>
           <li class="c-todo-list__item" v-for="task of tasks" :key="task.id">
-            <input type="checkbox" class="c-todo-list__checkbox" />
+            <input
+              type="checkbox"
+              class="c-todo-list__checkbox"
+              :value="task.id"
+              v-model="task_checkbox"
+              @change="verifyTest"
+            />
             <p class="c-todo-list__text">{{ task.name }}</p>
             <button class="c-todo-list__remove" @click="delete_task(task)">
               <img
@@ -18,10 +24,12 @@
         </ul>
         <div class="c-todo-list-info">
           <p class="c-todo-list-info__count">
-            <span class="c-todo-list-info__number">0</span>
+            <span class="c-todo-list-info__number">{{ tasks.length }}</span>
             items left
           </p>
-          <button class="c-todo-list-info__button">Clear Completed</button>
+          <button class="c-todo-list-info__button" @click="delete_all_tasks">
+            Clear Completed
+          </button>
         </div>
       </div>
     </main>
@@ -43,6 +51,7 @@ export default {
   },
   data() {
     return {
+      task_checkbox: [],
       tasks: [
         {
           id: 1,
@@ -78,6 +87,22 @@ export default {
       console.log("clicked delete: ", task);
       this.tasks = this.tasks.filter((item) => item.id !== task.id);
       console.log("tasks update: ", this.tasks);
+    },
+    delete_all_tasks() {
+      let tasks_finish = [];
+      const tasks = this.task_checkbox;
+      Object.keys(tasks).map(function (key) {
+        tasks_finish.push(tasks[key]);
+      });
+
+      if (tasks_finish.length > 0) {
+        tasks_finish.forEach((item) => {
+          console.log("item: ", item);
+          this.tasks = this.tasks.filter((task) => task.id !== item);
+        });
+      } else {
+        alert("Não exite tasks finalizadas");
+      }
     },
   },
 };
@@ -208,6 +233,13 @@ export default {
     &:hover {
       color: var(--color-ca);
     }
+  }
+}
+
+.cursor-not {
+  cursor: not-allowed;
+  &:hover {
+    color: unset;
   }
 }
 </style>
