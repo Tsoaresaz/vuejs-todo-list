@@ -31,3 +31,7 @@ Projeto de estudo do VueJS onde utilizei a metodologia `BEM (Block, Element e Mo
 ### Ideia do Projeto
 
 O projeto é um desafio do site [Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW) onde o mesmo tem o layout aqui desenvolvido. Resolvi fazer o mesmo com o VueJS para a finalidade de estudos.
+
+### Ambiente de Testes
+
+Adicionado o projeto no **Vercel**, no link [clique aqui](https://vuejs-todo-list-beta.vercel.app/).

@@ -28,6 +28,7 @@ export default {
   methods: {
     add_task() {
       this.$emit("toSaveTask", this.task_model);
+      this.task_model = "";
     },
   },
 };
